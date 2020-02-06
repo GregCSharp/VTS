@@ -1,0 +1,14 @@
+<form #loginForm="ngForm" class="form-signin text-center">
+  <img class="mb-4" src="/assets/img/logo.png" alt="" width="150" height="150">
+  <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+  <label for="name" >Name</label>
+  <input type="name" id="name" name="name" class="form-control" #name="ngModel"
+    placeholder="Name" required autofocus="" [(ngModel)]="model.name">
+  <button class="btn btn-success btn-block" [disabled]="!name.value" (click)="login()"><i class="fa fa-sign-in"></i> Sign in</button>
+  <hr/>
+  <h1 class="h3 mt-5 mb-3 font-weight-normal">New? Register</h1>
+  <label for="name" >Name</label>
+  <input type="name" id="registerName" name="registerName" class="form-control" #registerName="ngModel"
+    placeholder="Name" required autofocus="" [(ngModel)]="model.registerName">
+  <button class="btn btn-outline-success btn-block" [disabled]="!registerName.value" (click)="register()"><i class="fa fa-user-circle-o"></i> Register</button>
+</form>

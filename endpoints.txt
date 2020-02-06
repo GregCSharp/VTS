@@ -1,0 +1,233 @@
+__AUTH CONTROLLER__
+**register a new user**
+request url: http://localhost:5007/api/auth/register
+request method: POST
+request body: 
+{
+    "name": "Gregory"
+}
+response body:
+{
+    "id": 8,
+    "name": "bob",
+    "toDoLists": null
+}
+**login**
+request url: http://localhost:5007/api/auth/login
+request method: POST
+body: 
+{
+    "name": "Gregory"
+}
+response body:
+{
+    "token": "{generated token}"
+}
+
+__TODOLISTS CONTROLLER__
+**view user's list**
+request url: http://localhost:5007/api/users/{userId}/lists
+request method: GET
+request hearders: 
+{
+    "Authorization": "Bearer {generated token}"
+}
+response body:
+[
+    {
+        "id": 1,
+        "name": "Groceries",
+        "isComplete": false,
+        "createdDate": "2020-02-06T10:23:25.1690566",
+        "completedDate": null,
+        "userId": 5,
+        "toDoItems": null
+    },
+    {
+        "id": 2,
+        "name": "Prepare for interview",
+        "isComplete": false,
+        "createdDate": "2020-02-06T10:23:25.1693002",
+        "completedDate": null,
+        "userId": 5,
+        "toDoItems": null
+    }
+]
+
+
+**create a new list for a user**
+request url: http://localhost:5007/api/users/{userId}/lists
+request method: POST
+request hearders: 
+{
+    "Authorization": "Bearer {generated token}"
+}
+request body:
+{
+	"name" : "New list just created"
+}
+response body:
+{
+    "id": 7,
+    "name": "New list just created",
+    "isComplete": false,
+    "createdDate": "2020-02-06T16:28:48.4236253-05:00",
+    "completedDate": null,
+    "userId": 5,
+    "toDoItems": null
+}
+
+**get one list of the user**
+request url: http://localhost:5007/api/users/{userId}/lists/{id}
+request method: GET
+request headers:
+{
+    "Authorization": "Bearer {generated token}"
+}
+request body:
+response body:
+{
+    "id": 7,
+    "name": "New list just created",
+    "isComplete": false,
+    "createdDate": "2020-02-06T16:28:48.4236253",
+    "completedDate": null,
+    "userId": 5,
+    "toDoItems": []
+}
+
+**edit user's list's**
+request url: http://localhost:5007/api/users/{userId}/lists/{id}
+request method: PUT
+request headers:
+{
+    "Authorization": "Bearer {generated token}"
+}
+request body:
+{
+	"name" : "I typed the wrong name"
+}
+response body:
+
+**make user's list as complete**
+request url: http://localhost:5007/api/users/{userId}/lists/{id}/setCompleted
+request method: POST
+request headers:
+{
+    "Authorization": "Bearer {generated token}"
+}
+request body:
+response body:
+
+**delete user's list**
+request url: http://localhost:5007/api/users/{userId}/lists/{id}
+request method: DELETE
+request headers:
+{
+    "Authorization": "Bearer {generated token}"
+}
+request body:
+response body:
+
+__TODOITEMS CONTROLLER__
+**view list's items**
+request url: http://localhost:5007/api/users/{userId}/lists/{listId}/todoitems
+request method: GET
+request headers:
+{
+    "Authorization": "Bearer {generated token}"
+}
+request body: 
+response body:
+[
+    {
+        "id": 1,
+        "name": "Bananas",
+        "isComplete": true,
+        "createdDate": "2020-02-06T10:23:25.1640125",
+        "completeDate": "2020-02-06T16:49:31.2477074",
+        "toDoListId": 1
+    },...
+]
+
+**create a item for a list
+request url: http://localhost:5007/api/users/{userId}/lists/{listId}/todoitems
+request method: POST
+request headers:
+{
+    "Authorization": "Bearer {generated token}"
+}
+request body:
+{
+	"name":"download files"
+}
+response body:
+{
+    "id": 15,
+    "name": "download files",
+    "isComplete": false,
+    "createdDate": "2020-02-06T16:55:05.1447394-05:00",
+    "completeDate": null,
+    "toDoListId": 8
+}
+
+**get one item of a to do list**
+request url: http://localhost:5007/api/users/{userId}/lists/{listId}/todoitems/{id}
+request method: GET
+request headers:
+{
+    "Authorization": "Bearer {generated token}"
+}
+request body:
+response body:
+{
+    "id": 15,
+    "name": "download files",
+    "isComplete": false,
+    "createdDate": "2020-02-06T16:55:05.1447394",
+    "completeDate": null,
+    "toDoListId": 8
+}
+
+**update one item of a list**
+request url: http://localhost:5007/api/users/{userId}/lists/{listId}/todoitems/{id}
+request method: POST
+request headers:
+{
+    "Authorization": "Bearer {generated token}"
+}
+request body:
+{
+	"name":"download files from google drive"
+}
+response body:
+
+**mark an item as complete**
+request url: http://localhost:5007/api/users/{userId}/lists/{listId}/todoitems/{id}/setcompleted
+request method: POST
+request headers:
+{
+    "Authorization": "Bearer {generated token}"
+}
+request body:
+response body:
+
+**mark an item as incomplete**
+request url: http://localhost:5007/api/users/{userId}/lists/{listId}/todoitems/{id}/setincomplete
+request method: POST
+request headers:
+{
+    "Authorization": "Bearer {generated token}"
+}
+request body:
+response body:
+
+**delete an item from a list**
+request url: http://localhost:5007/api/users/5/lists/8/todoitems/15
+request method: DELETE
+request headers:
+{
+    "Authorization": "Bearer {generated token}"
+}
+request body:
+response body:
